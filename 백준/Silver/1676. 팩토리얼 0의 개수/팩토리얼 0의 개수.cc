@@ -15,3 +15,9 @@ int main(void){
     cout<<count<<endl;
     return 0;
 }
+
+// #include<iostream>
+// int main(){
+//     int a;
+//     std::cin>>a;
+//     std::cout<<(a/5+a/25+a/125);}
