@@ -16,18 +16,19 @@ int main(void){
         else if(word.at(i)==')'){
             if(!stk.empty()&&stk.top()=='(')stk.pop();
             else {
-                stk.push(word.at(i));
-                
+                BOOL = true;
+                break;
             }
         }
         else if(word.at(i)==']'){
             if(!stk.empty()&&stk.top()=='[')stk.pop();
             else{
-                stk.push(word.at(i));
+                BOOL = true;
+                break;
             }
         }
         }
-        if(stk.size()==0)cout<<"yes"<<'\n';
-        else cout<<"no"<<"\n";
+        if(BOOL||!stk.empty())cout<<"no"<<'\n';
+        else if(!BOOL)cout<<"yes"<<'\n';
     }
 }
