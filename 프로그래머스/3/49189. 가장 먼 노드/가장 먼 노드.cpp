@@ -21,7 +21,7 @@ int solution(int n, vector<vector<int>> edge){
 
   BOOL[1] = true;
   q.push(1);
-  distance[1] = 1; 
+  distance[1] = 0; 
   while(!q.empty()){
     int k = q.front();
     q.pop();
