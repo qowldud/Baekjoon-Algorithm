@@ -11,22 +11,16 @@ int main() {
     
     int N,M;
     cin>>N>>M;
-    int array[N+1][N+1] = {};
     int s[N+1][N+1] = {};
     
     for(int i = 1;i<=N;i++){
         for(int j=1;j<=N;j++){
             int a;
             cin>>a;
-            array[i][j] = a;
+            s[i][j] = s[i-1][j] + s[i][j-1] - s[i-1][j-1] + a;
         }
     }
     
-    for(int i=1;i<=N;i++){
-        for(int j=1;j<=N;j++){
-            s[i][j] = s[i-1][j] + s[i][j-1] - s[i-1][j-1] + array[i][j];
-        }
-    }
     
     for(int i=0;i<M;i++){
         int x1,y1,x2,y2;
