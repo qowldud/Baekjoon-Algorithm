@@ -1,48 +1,46 @@
 #include <iostream>
-#include <unordered_map>
+#include <vector>
 #include <algorithm>
+
 using namespace std;
 
 int main(void){
-    long long num,a,sum,count = 0;
-    unordered_map<long long, int> m,m1;
-    cin>>num;
-    long long array[num];
-    for(int i=0;i<num;i++){
-        cin>>array[i];
-        if(m.find(array[i])!=m.end())m[array[i]]+=1;
-        else m.insert({array[i],1});
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    
+    int N, count = 0;
+    cin>>N;
+    vector<long long> v(N,0);
+    
+    for(int i=0;i<N;i++){
+        cin>>v[i];
     }
-    sort(array,array+num);
-    for(int i=0;i<num-1;i++){
-        for(int j=i+1;j<num;j++){
-            sum = array[i]+array[j];
-            if(sum>array[num-1])break;
-            if(binary_search(array,array+num,sum)){
-                if(!(m1.find(sum)!=m1.end())){
-                    if(array[i]==0){
-                        if(array[j]==0&&m[0]==2) ;
-                        else if(m[array[j]]==1) ;
-                        else{
-                            m1.insert({sum,0});
-                            count += m[sum];
-                        }
-                    }
-                    else if(array[j]==0){
-                        if(array[i]==0&&m[0]==2) ;
-                        else if(m[array[i]]==1) ;
-                        else{
-                            m1.insert({sum,0});
-                            count += m[sum];
-                        }
-                    }
-                    else{
-                        m1.insert({sum,0});
-                        count += m[sum];
-                    }
+    
+    sort(v.begin(), v.end());
+    
+    for(int i=0;i<N;i++){
+        int a = 0, b = N-1;
+        long long k = v[i];
+        
+        while(a < b){
+            if(v[a] + v[b] < k){
+                a++;
+            }else if(v[a] + v[b] > k){
+                b--;
+            }else{
+                if(a != i && b != i){
+                    count++;
+                    break;
+                } else if(a == i){
+                    a++;
+                }else if(b == i){
+                    b--;
                 }
+
             }
         }
     }
-    cout<<count<<'\n';
+    
+    cout<<count;
 }
