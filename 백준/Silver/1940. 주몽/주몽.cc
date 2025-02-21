@@ -1,25 +1,39 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
 int main(void){
-
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-
-    int num, M, count = 0;
-    cin>>num>>M;
-    int array[num];
-
-    for(int i = 0; i< num; i++){
-        cin>>array[i];
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    
+    int N,M, count = 0;
+    cin>>N>>M;
+    vector<int>v;
+    
+    for(int i=0;i<N;i++){
+        int a;
+        cin>>a;
+        v.push_back(a);
     }
-
-    for(int i = 0; i < num; i++){
-        for(int j = i+1; j < num; j++){
-            if(M == array[i] + array[j])count++;
+    
+    sort(v.begin(), v.end());
+    
+    int i = 0, j = N-1;
+    
+    while(i < j){
+        if(v[i] + v[j] > M){
+            j--;
+        }else if(v[i] + v[j] < M){
+            i++;
+        }else if(v[i] + v[j] == M){
+            i++;
+            j--;
+            count++;
         }
     }
+    
     cout<<count;
 }
