@@ -1,52 +1,39 @@
 #include <iostream>
 #include <stack>
-#include <deque>
+#include <vector>
+
 using namespace std;
 
 int main(void){
-    int num,a, max, now, size;
-    bool BOOL = false;
-    char plus = '+';
-    char minus = '-';
-    cin>>num;
+    int N, num = 1;
     stack<int> s;
-    deque<char> q;
-    cin>>a;
-    max = a;
-    for(int i=1;i<=a;i++){
-            s.push(i);
-            q.push_back(plus);
-        }
-        s.pop();
-        q.push_back(minus);
-        for(int i=1;i<num;i++){
-            cin>>a;
-            if(max<a){
-                for(int j=max+1;j<=a;j++){
-                    s.push(j);
-                    q.push_back(plus);
-
-                }
-                max = a;
+    vector<char> v;
+    cin>>N;
+    
+    for(int i=0;i<N;i++){
+        int a;
+        cin>>a;
+        
+        if(a >= num){
+            while(a >= num){
+                s.push(num);
+                num++;
+                v.push_back('+');
+            }
+            s.pop();
+            v.push_back('-');
+        } else{
+            if(a == s.top()){
                 s.pop();
-                q.push_back(minus);
+                v.push_back('-');
+            } else{
+                cout<<"NO"<<'\n';
+                exit(0);
             }
-            else {
-                if(s.top()!=a){
-                BOOL = true;
-            }
-                    s.pop();
-                    q.push_back(minus);
-            }
+        }
     }
-    size = q.size();
-    if(BOOL){
-        cout<<"NO"<<'\n';
-    }
-    else{
-    for(int i=0;i<size;i++){
-        cout<<q.front()<<'\n';
-        q.pop_front();
-    }
+    
+    for(int i=0;i<v.size();i++){
+        cout<<v[i]<<'\n';
     }
 }
