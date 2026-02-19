@@ -1,13 +1,6 @@
 function solution(arr, intervals) {
-    var answer = [];
+    const [[a, b], [c, d]] = intervals;
     
-    for(let i = 0; i < intervals.length; i++){
-        const [a, b] = intervals[i];
-        
-        for(let j = a; j <= b; j++){
-            answer.push(arr[j]);
-        }
-    }
+    return [...arr.slice(a, b+1), ...arr.slice(c, d+1)];
     
-    return answer;
 }
