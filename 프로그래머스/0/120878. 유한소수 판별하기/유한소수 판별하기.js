@@ -1,13 +1,6 @@
 function solution(a, b) {
-    while(1){
-        if(b%2 === 0){
-            b /= 2;
-        }else if(b%5 === 0){
-            b /= 5;
-        }else break;
-    }
+    while(b%2 === 0) b /= 2;
+    while(b%5 === 0) b /= 5;
     
-    if(b === 1 || a%b === 0) return 1;
-    
-    return 2;
+    return (b === 1 || a%b === 0) ? 1 : 2;
 }
