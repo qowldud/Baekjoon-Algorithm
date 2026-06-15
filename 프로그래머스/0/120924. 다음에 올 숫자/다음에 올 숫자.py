@@ -1,7 +1,6 @@
 def solution(common):
-    n = len(common);
-    
-    if common[1] - common[0] == common[2] - common[1]:
-        return common[n - 1] + common[1] - common[0];
+    a, b, c = common[:3];
+    if (b - a) == (c - b):
+        return common[-1] + (b-a);
     else:
-        return common[n - 1] * (common[1] / common[0]);
+        return common[-1] * (b/a);
