@@ -1,18 +1,12 @@
 def solution(board):
-    answer = 0
-    for i in range(len(board)):
-        for j in range(len(board[i])):
-            if board[i][j] == 1:
-                for a in range(i-1, i+2):
-                    for b in range(j-1, j+2):
-                        if(0 <= a < len(board) and 0 <= b < len(board)):
-                            if 1 != board[a][b]:
-                                board[a][b] = 2
-    
-    for i in range(len(board)):
-        for j in range(len(board[i])):
-            if board[i][j] == 0:
-                answer += 1
-                
-    return answer
+    n = len(board)
+    danger = set()
+    for i, row in enumerate(board):
+        for j, x in enumerate(row):
+            if not x:
+                continue
+            danger.update((i+di, j+dj) for di in [-1, 0, 1] for dj in [-1, 0, 1])
+            
+    return n*n - sum(0<= x < n and 0<= y <n for x, y in danger)
+            
         
