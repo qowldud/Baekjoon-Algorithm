@@ -1,11 +1,8 @@
+import collections
+from functools import reduce
+
 def solution(clothes):
-    dic = {}
-    answer = 1
-    for clothes_name, clothes_spec in clothes:
-        dic[clothes_spec] = dic.get(clothes_spec,0)+1
-    
-    for v in dic.values():
-        answer *= (v+1)
-    
-    return answer-1
-        
+    # 종류별로 숫자를 셀때는 Counter를 생각
+    cnt = collections.Counter([kind for name, kind in clothes])
+    answer = reduce(lambda x, y: x*(y+1), cnt.values(), 1) - 1
+    return answer
