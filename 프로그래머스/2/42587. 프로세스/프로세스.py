@@ -1,8 +1,6 @@
 def solution(priorities, location):
-    s = []
+    s = [(idx, pr) for idx, pr in enumerate(priorities)]
     count = 0
-    for idx, pr in enumerate(priorities):
-        s.append([idx, pr])
     
     while True:
         current_max = max(item[1] for item in s)
